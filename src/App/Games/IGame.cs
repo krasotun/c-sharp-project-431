@@ -1,9 +1,7 @@
+namespace App.Games;
+
 public interface IGame
 {
-    void Start();
-}
-
-public enum GameName
-{
-    Even,
+    string Rules { get; }
+    GameRound CreateRound();
 }

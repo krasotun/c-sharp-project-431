@@ -1,59 +1,22 @@
-public class Even(string playerName) : IGame
+namespace App.Games;
+
+public class Even : IGame
 {
-    private readonly string _playerName = playerName;
-    private const int MaxRounds = 3;
+    public string Rules => "Answer 'yes' if the number is even, otherwise answer 'no'";
     private const int MinNumber = 1;
     private const int MaxNumberExclusive = 101;
 
-    public void Start()
+    public GameRound CreateRound()
     {
-        Console.WriteLine("Answer 'yes' if the number is even, otherwise answer 'no'");
-        var steps = 0;
+        int number = Random.Shared.Next(MinNumber, MaxNumberExclusive);
 
-        while (steps < MaxRounds)
-        {
-            int number = Random.Shared.Next(MinNumber, MaxNumberExclusive);
-            Console.WriteLine($"Question: {number}");
-            Console.Write("Your answer: ");
+        var correctAnswer = IsEven(number) ? "yes" : "no";
 
-            var playerAnswer = Console.ReadLine() ?? "";
-
-            var correctAnswer = IsEven(number) ? "yes" : "no";
-
-            if (playerAnswer != correctAnswer)
-            {
-                ShowWrongAnswerMessage(playerAnswer, correctAnswer);
-                return;
-            }
-
-            steps++;
-
-            ShowCorrectAnswerMessage();
-        }
-
-        ShowFinishMessage();
+        return new GameRound(number.ToString(), correctAnswer);
     }
 
     private bool IsEven(int number)
     {
         return number % 2 == 0;
-    }
-
-    private void ShowWrongAnswerMessage(string playerAnswer, string correctAnswer)
-    {
-        Console.WriteLine(
-            $"'{playerAnswer}' is wrong answer ;(. Correct answer was '{correctAnswer}'."
-        );
-        Console.WriteLine($"Let's try again, {_playerName}!");
-    }
-
-    private void ShowCorrectAnswerMessage()
-    {
-        Console.WriteLine("Correct!");
-    }
-
-    private void ShowFinishMessage()
-    {
-        Console.WriteLine($"Congratulations, {_playerName}!");
     }
 }

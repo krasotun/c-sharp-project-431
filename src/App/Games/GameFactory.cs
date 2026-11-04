@@ -1,13 +1,15 @@
+namespace App.Games;
+
 public static class GameFactory
 {
-    public static IGame Factory(GameName gameName, string playerName)
+    public static IGame CreateGame(GameType gameType)
     {
-        return gameName switch
+        return gameType switch
         {
-            GameName.Even => new Even(playerName),
+            GameType.Even => new Even(),
             _ => throw new ArgumentOutOfRangeException(
-                nameof(gameName),
-                $"Unknown game: {gameName}"
+                nameof(gameType),
+                $"Unknown game: {gameType}"
             ),
         };
     }

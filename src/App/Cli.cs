@@ -1,3 +1,5 @@
+namespace App;
+
 public static class Cli
 {
     public static string GreetPlayer()
