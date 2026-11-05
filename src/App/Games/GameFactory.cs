@@ -7,6 +7,7 @@ public static class GameFactory
         return gameType switch
         {
             GameType.Even => new Even(),
+            GameType.Calc => new Calc(),
             _ => throw new ArgumentOutOfRangeException(
                 nameof(gameType),
                 $"Unknown game: {gameType}"

@@ -2,7 +2,7 @@ namespace App;
 
 public static class Cli
 {
-    public static string GreetPlayer()
+    public static string MeetPlayer()
     {
         Console.WriteLine("Welcome to the Brain Games!");
         Console.Write("May I have your name? ");

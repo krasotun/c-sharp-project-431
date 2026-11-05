@@ -9,6 +9,7 @@ public class Engine(IGame game, string playerName)
     public void StartGame()
     {
         Console.WriteLine(game.Rules);
+
         var rounds = 0;
 
         while (rounds < MaxRounds)
@@ -44,7 +45,7 @@ public class Engine(IGame game, string playerName)
         Console.WriteLine($"Let's try again, {playerName}!");
     }
 
-    private void ShowCorrectAnswerMessage()
+    private static void ShowCorrectAnswerMessage()
     {
         Console.WriteLine("Correct!");
     }
