@@ -8,6 +8,7 @@ public static class GameFactory
         {
             GameType.Even => new Even(),
             GameType.Calc => new Calc(),
+            GameType.Gcd => new Gcd(),
             _ => throw new ArgumentOutOfRangeException(
                 nameof(gameType),
                 $"Unknown game: {gameType}"

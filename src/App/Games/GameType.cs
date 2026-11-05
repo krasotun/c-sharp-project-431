@@ -4,4 +4,5 @@ public enum GameType
 {
     Even,
     Calc,
+    Gcd,
 }
