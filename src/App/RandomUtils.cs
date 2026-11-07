@@ -7,11 +7,21 @@ public static class RandomUtils
 
     public static int GetRandomInt()
     {
-        return Random.Shared.Next(MinNumber, MaxNumberExclusive);
+        return GetRandomInt(MinNumber, MaxNumberExclusive);
+    }
+
+    public static int GetRandomInt(int min, int maxExclusive)
+    {
+        return Random.Shared.Next(min, maxExclusive);
     }
 
     public static T GetRandomElement<T>(T[] items)
     {
-        return items[Random.Shared.Next(items.Length)];
+        return items[GetRandomIndex(items)];
+    }
+
+    public static int GetRandomIndex<T>(T[] items)
+    {
+        return GetRandomInt(0, items.Length);
     }
 }

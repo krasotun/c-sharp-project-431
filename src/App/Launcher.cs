@@ -11,6 +11,7 @@ public static class Launcher
         Console.WriteLine("2 - Even");
         Console.WriteLine("3 - Calc");
         Console.WriteLine("4 - GCD");
+        Console.WriteLine("5 - Progression");
         Console.WriteLine("0 - Exit");
         Console.Write("Your choice: ");
 
@@ -32,6 +33,7 @@ public static class Launcher
             "2" => GameType.Even,
             "3" => GameType.Calc,
             "4" => GameType.Gcd,
+            "5" => GameType.Progression,
             _ => null,
         };
 
