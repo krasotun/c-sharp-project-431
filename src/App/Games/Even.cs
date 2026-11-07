@@ -2,7 +2,7 @@ namespace App.Games;
 
 public class Even : IGame
 {
-    public string Rules => "Answer 'yes' if the number is even, otherwise answer 'no'";
+    public string Rules => "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
     public GameRound CreateRound()
     {
