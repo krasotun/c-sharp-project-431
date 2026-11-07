@@ -6,4 +6,5 @@ public enum GameType
     Calc,
     Gcd,
     Progression,
+    Prime,
 }

@@ -12,6 +12,7 @@ public static class Launcher
         Console.WriteLine("3 - Calc");
         Console.WriteLine("4 - GCD");
         Console.WriteLine("5 - Progression");
+        Console.WriteLine("6 - Prime");
         Console.WriteLine("0 - Exit");
         Console.Write("Your choice: ");
 
@@ -34,6 +35,7 @@ public static class Launcher
             "3" => GameType.Calc,
             "4" => GameType.Gcd,
             "5" => GameType.Progression,
+            "6" => GameType.Prime,
             _ => null,
         };
 

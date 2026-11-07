@@ -22,7 +22,46 @@ cd c-sharp-project-431
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+make setup     # сборка в папку dist
+make run-dist  # запуск
+```
+
+После запуска выберите игру по номеру. В каждой игре нужно ответить правильно на 3 вопроса подряд, первая ошибка завершает игру.
+
+### Приветствие
+
+![Приветствие](docs/screenshots/greet.png)
+
+### Проверка на чётность
+
+| Победа | Поражение |
+| --- | --- |
+| ![Even — победа](docs/screenshots/even-win.png) | ![Even — поражение](docs/screenshots/even-lose.png) |
+
+### Калькулятор
+
+| Победа | Поражение |
+| --- | --- |
+| ![Calc — победа](docs/screenshots/calc-win.png) | ![Calc — поражение](docs/screenshots/calc-lose.png) |
+
+### НОД
+
+| Победа | Поражение |
+| --- | --- |
+| ![GCD — победа](docs/screenshots/gcd-win.png) | ![GCD — поражение](docs/screenshots/gcd-lose.png) |
+
+### Арифметическая прогрессия
+
+| Победа | Поражение |
+| --- | --- |
+| ![Progression — победа](docs/screenshots/progression-win.png) | ![Progression — поражение](docs/screenshots/progression-lose.png) |
+
+### Простое ли число?
+
+| Победа | Поражение |
+| --- | --- |
+| ![Prime — победа](docs/screenshots/prime-win.png) | ![Prime — поражение](docs/screenshots/prime-lose.png) |
 
 ---
 
