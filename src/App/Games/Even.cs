@@ -1,16 +1,26 @@
 namespace App.Games;
 
-public class Even : IGame
+public static class Even
 {
-    public string Rules => "Answer 'yes' if the number is even, otherwise answer 'no'.";
+    private const string Rules = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    public GameRound CreateRound()
+    public static void Play()
     {
-        int number = RandomUtils.GetRandomInt();
+        var questions = new string[Engine.Rounds];
+        var answers = new string[Engine.Rounds];
 
-        var correctAnswer = IsEven(number) ? "yes" : "no";
+        for (var i = 0; i < Engine.Rounds; i++)
+        {
+            var number = RandomUtils.GetRandomInt();
+            var question = number.ToString();
 
-        return new GameRound(number.ToString(), correctAnswer);
+            var answer = IsEven(number) ? "yes" : "no";
+
+            questions[i] = question;
+            answers[i] = answer;
+        }
+
+        Engine.Run(Rules, questions, answers);
     }
 
     private static bool IsEven(int number)

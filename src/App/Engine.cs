@@ -1,43 +1,40 @@
-using App.Games;
-
 namespace App;
 
-public class Engine(IGame game, string playerName)
+public static class Engine
 {
-    private const int MaxRounds = 3;
+    public const int Rounds = 3;
 
-    public void StartGame()
+    public static void Run(string rules, string[] questions, string[] answers)
     {
-        Console.WriteLine(game.Rules);
+        var playerName = Cli.MeetPlayer();
 
-        var rounds = 0;
+        Console.WriteLine(rules);
 
-        while (rounds < MaxRounds)
+        for (var i = 0; i < questions.Length; i++)
         {
-            var gameRound = game.CreateRound();
-
-            Console.WriteLine($"Question: {gameRound.Question}");
+            Console.WriteLine($"Question: {questions[i]}");
             Console.Write("Your answer: ");
 
             var playerAnswer = Console.ReadLine() ?? "";
-
-            var correctAnswer = gameRound.Answer;
+            var correctAnswer = answers[i];
 
             if (playerAnswer != correctAnswer)
             {
-                ShowWrongAnswerMessage(playerAnswer, correctAnswer);
+                ShowWrongAnswerMessage(playerAnswer, correctAnswer, playerName);
                 return;
             }
-
-            rounds++;
 
             ShowCorrectAnswerMessage();
         }
 
-        ShowFinishMessage();
+        ShowFinishMessage(playerName);
     }
 
-    private void ShowWrongAnswerMessage(string playerAnswer, string correctAnswer)
+    private static void ShowWrongAnswerMessage(
+        string playerAnswer,
+        string correctAnswer,
+        string playerName
+    )
     {
         Console.WriteLine(
             $"'{playerAnswer}' is wrong answer ;(. Correct answer was '{correctAnswer}'."
@@ -50,7 +47,7 @@ public class Engine(IGame game, string playerName)
         Console.WriteLine("Correct!");
     }
 
-    private void ShowFinishMessage()
+    private static void ShowFinishMessage(string playerName)
     {
         Console.WriteLine($"Congratulations, {playerName}!");
     }

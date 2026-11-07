@@ -1,21 +1,29 @@
 namespace App.Games;
 
-public class Calc : IGame
+public static class Calc
 {
+    private const string Rules = "What is the result of the expression?";
     private static readonly char[] Operators = ['+', '-', '*'];
-    public string Rules => "What is the result of the expression?";
 
-    public GameRound CreateRound()
+    public static void Play()
     {
-        var left = RandomUtils.GetRandomInt();
-        var right = RandomUtils.GetRandomInt();
-        var op = RandomUtils.GetRandomElement(Operators);
-        var answer = GetAnswer(left, right, op);
+        var questions = new string[Engine.Rounds];
+        var answers = new string[Engine.Rounds];
 
-        return new GameRound($"{left} {op} {right}", answer.ToString());
+        for (var i = 0; i < Engine.Rounds; i++)
+        {
+            var left = RandomUtils.GetRandomInt();
+            var right = RandomUtils.GetRandomInt();
+            var op = Operators[RandomUtils.GetRandomInt(0, Operators.Length)];
+
+            questions[i] = $"{left} {op} {right}";
+            answers[i] = Calculate(left, right, op).ToString();
+        }
+
+        Engine.Run(Rules, questions, answers);
     }
 
-    private static int GetAnswer(int left, int right, char op)
+    private static int Calculate(int left, int right, char op)
     {
         return op switch
         {

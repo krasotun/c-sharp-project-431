@@ -1,18 +1,24 @@
 namespace App.Games;
 
-public class Prime : IGame
+public static class Prime
 {
+    private const string Rules = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private const int MinPrime = 2;
 
-    public string Rules => "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-
-    public GameRound CreateRound()
+    public static void Play()
     {
-        var number = RandomUtils.GetRandomInt();
+        var questions = new string[Engine.Rounds];
+        var answers = new string[Engine.Rounds];
 
-        var correctAnswer = IsPrime(number) ? "yes" : "no";
+        for (var i = 0; i < Engine.Rounds; i++)
+        {
+            var number = RandomUtils.GetRandomInt();
 
-        return new GameRound(number.ToString(), correctAnswer);
+            questions[i] = number.ToString();
+            answers[i] = IsPrime(number) ? "yes" : "no";
+        }
+
+        Engine.Run(Rules, questions, answers);
     }
 
     private static bool IsPrime(int number)
@@ -22,7 +28,7 @@ public class Prime : IGame
             return false;
         }
 
-        for (var divisor = 2; divisor * divisor <= number; divisor++)
+        for (var divisor = MinPrime; divisor * divisor <= number; divisor++)
         {
             if (number % divisor == 0)
             {

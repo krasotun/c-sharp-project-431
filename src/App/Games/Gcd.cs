@@ -1,30 +1,39 @@
 namespace App.Games;
 
-public class Gcd : IGame
+public static class Gcd
 {
-    public string Rules => "Find the greatest common divisor of given numbers.";
+    private const string Rules = "Find the greatest common divisor of given numbers.";
+    private const int MinDivisor = 1;
 
-    public GameRound CreateRound()
+    public static void Play()
     {
-        var first = RandomUtils.GetRandomInt();
-        var second = RandomUtils.GetRandomInt();
-        var answer = FindGcd(first, second);
+        var questions = new string[Engine.Rounds];
+        var answers = new string[Engine.Rounds];
 
-        return new GameRound($"{first} {second}", answer.ToString());
+        for (var i = 0; i < Engine.Rounds; i++)
+        {
+            var first = RandomUtils.GetRandomInt();
+            var second = RandomUtils.GetRandomInt();
+
+            questions[i] = $"{first} {second}";
+            answers[i] = FindGcd(first, second).ToString();
+        }
+
+        Engine.Run(Rules, questions, answers);
     }
 
     private static int FindGcd(int a, int b)
     {
-        int min = a < b ? a : b;
+        var min = a < b ? a : b;
 
-        for (int i = min; i >= 1; i--)
+        for (var divisor = min; divisor > MinDivisor; divisor--)
         {
-            if (a % i == 0 && b % i == 0)
+            if (a % divisor == 0 && b % divisor == 0)
             {
-                return i;
+                return divisor;
             }
         }
 
-        return 1;
+        return MinDivisor;
     }
 }

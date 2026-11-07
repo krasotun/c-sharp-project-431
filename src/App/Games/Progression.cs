@@ -1,25 +1,30 @@
 namespace App.Games;
 
-public class Progression : IGame
+public static class Progression
 {
+    private const string Rules = "What number is missing in the progression?";
     private const int Length = 10;
     private const int MinStep = 1;
     private const int MaxStepExclusive = 11;
     private const string HiddenPlaceholder = "..";
 
-    public string Rules => "What number is missing in the progression?";
-
-    public GameRound CreateRound()
+    public static void Play()
     {
-        var start = RandomUtils.GetRandomInt();
-        var step = RandomUtils.GetRandomInt(MinStep, MaxStepExclusive);
-        var progression = GenerateProgression(start, step, Length);
-        var hiddenIndex = RandomUtils.GetRandomIndex(progression);
+        var questions = new string[Engine.Rounds];
+        var answers = new string[Engine.Rounds];
 
-        var question = BuildQuestion(progression, hiddenIndex);
-        var answer = progression[hiddenIndex].ToString();
+        for (var i = 0; i < Engine.Rounds; i++)
+        {
+            var start = RandomUtils.GetRandomInt();
+            var step = RandomUtils.GetRandomInt(MinStep, MaxStepExclusive);
+            var progression = GenerateProgression(start, step, Length);
+            var hiddenIndex = RandomUtils.GetRandomInt(0, progression.Length);
 
-        return new GameRound(question, answer);
+            questions[i] = BuildQuestion(progression, hiddenIndex);
+            answers[i] = progression[hiddenIndex].ToString();
+        }
+
+        Engine.Run(Rules, questions, answers);
     }
 
     private static int[] GenerateProgression(int start, int step, int length)

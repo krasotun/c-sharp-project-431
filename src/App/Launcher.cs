@@ -18,37 +18,31 @@ public static class Launcher
 
         var userChoice = Console.ReadLine();
 
-        if (userChoice == "0")
+        switch (userChoice)
         {
-            return;
+            case "0":
+                break;
+            case "1":
+                Cli.MeetPlayer();
+                break;
+            case "2":
+                Even.Play();
+                break;
+            case "3":
+                Calc.Play();
+                break;
+            case "4":
+                Gcd.Play();
+                break;
+            case "5":
+                Progression.Play();
+                break;
+            case "6":
+                Prime.Play();
+                break;
+            default:
+                Console.WriteLine("Unsupported game, try another");
+                break;
         }
-
-        if (userChoice == "1")
-        {
-            Cli.MeetPlayer();
-            return;
-        }
-
-        GameType? nullableGameType = userChoice switch
-        {
-            "2" => GameType.Even,
-            "3" => GameType.Calc,
-            "4" => GameType.Gcd,
-            "5" => GameType.Progression,
-            "6" => GameType.Prime,
-            _ => null,
-        };
-
-        if (nullableGameType is not GameType gameType)
-        {
-            Console.WriteLine("Unsupported game, try another");
-            return;
-        }
-
-        var game = GameFactory.CreateGame(gameType);
-        var playerName = Cli.MeetPlayer();
-        var engine = new Engine(game, playerName);
-
-        engine.StartGame();
     }
 }

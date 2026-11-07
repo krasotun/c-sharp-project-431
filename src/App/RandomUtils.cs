@@ -14,14 +14,4 @@ public static class RandomUtils
     {
         return Random.Shared.Next(min, maxExclusive);
     }
-
-    public static T GetRandomElement<T>(T[] items)
-    {
-        return items[GetRandomIndex(items)];
-    }
-
-    public static int GetRandomIndex<T>(T[] items)
-    {
-        return GetRandomInt(0, items.Length);
-    }
 }
